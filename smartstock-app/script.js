@@ -9,24 +9,41 @@ document.getElementById('inventory-form').addEventListener('submit', function(e)
     const itemName = document.getElementById('item-name').value;
     const itemQuantity = document.getElementById('item-quantity').value;
 
+    sendPostRequest(itemName, itemQuantity);
+});
+
+function sendPostRequest(itemName, itemQuantity, force = false) {
     fetch('http://localhost:8000', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: itemName, quantity: itemQuantity }),
+        body: JSON.stringify({ name: itemName, quantity: itemQuantity, force: force }),
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok && response.status === 400) {
+            // 重複警告のハンドリング
+            return response.json().then(data => {
+                if (confirm(data.message + " それでも追加しますか？")) {
+                    // ユーザーが確認した場合、強制的に追加
+                    sendPostRequest(itemName, itemQuantity, true);
+                }
+            });
+        }
+        return response.json();
+    })
     .then(data => {
-        fetchAndDisplayInventory();
-        addItemToTable(itemName, itemQuantity);
-        document.getElementById('item-name').value = '';
-        document.getElementById('item-quantity').value = '';
+        if (data.status === 'received') {
+            // 通常の処理
+            addItemToTable(itemName, itemQuantity);
+            document.getElementById('item-name').value = '';
+            document.getElementById('item-quantity').value = '';
+        }
     })
     .catch((error) => {
         console.error('Error:', error);
     });
-});
+}
 
 function addItemToTable(name, quantity) {
     const table = document.getElementById('inventory-table').getElementsByTagName('tbody')[0];
