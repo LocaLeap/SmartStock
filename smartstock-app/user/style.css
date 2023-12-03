@@ -1,0 +1,64 @@
+/* style.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0f7fa; /* 淡い青系の背景色 */
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 60px auto;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    font-size: 32px;
+    color: white;
+    background: linear-gradient(45deg, #2196f3, #1e88e5); /* 青系のグラデーション */
+    padding: 25px 0;
+    margin: 0;
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    transition: background-color 0.3s;
+}
+
+.inventory-table thead th {
+    background-color: #42a5f5; /* 明るい青色 */
+    color: white;
+    padding: 18px 20px;
+    text-align: left;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #64b5f6; /* やや淡い青色 */
+}
+
+.inventory-table tbody td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.2s ease;
+}
+
+.inventory-table tbody tr:hover td {
+    background-color: #bbdefb; /* 非常に淡い青色 */
+}
+
+/* スムースなホバーエフェクト */
+.inventory-table tbody tr:hover td {
+    background-color: #90caf9; /* やや明るい青色 */
+}
