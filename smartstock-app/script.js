@@ -62,9 +62,11 @@ function updateInventoryTable(data) {
     tableBody.innerHTML = ''; // テーブルをクリア
     data.forEach(item => {
         const row = tableBody.insertRow();
-        row.insertCell(0).textContent = item[0]; // アイテム名
-        row.insertCell(1).textContent = item[1]; // 数量
-        const deleteButton = row.insertCell(2);
+        row.insertCell(0).textContent = item[0]; // 管理番号
+        row.insertCell(1).textContent = item[1]; // アイテム名
+        row.insertCell(2).textContent = item[2]; // 数量
+        row.insertCell(3).textContent = item[3]; // 一個当たりの重量
+        const deleteButton = row.insertCell(4);
         deleteButton.innerHTML = '<button onclick="removeItem(this)">削除</button>';
     });
 }

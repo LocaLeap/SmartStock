@@ -16,22 +16,31 @@ class CSVHTTPRequestHandler(BaseHTTPRequestHandler):
         self.end_headers()
     
     def do_POST(self):
-        # リクエストのコンテンツ長を取得
         content_length = int(self.headers['Content-Length'])
-        # リクエストボディを読み取り
         post_data = self.rfile.read(content_length)
-        # JSONデータを解析
         data = json.loads(post_data)
+
+        # CSVファイルを読み込み、最後の管理番号を取得
+        try:
+            with open('data.csv', 'r', newline='') as file:
+                last_id = sum(1 for row in csv.reader(file))
+        except FileNotFoundError:
+            last_id = 0
+
+        # 数量が0の場合、エラーを回避するためにデフォルトの重量を設定
+        quantity = max(1, int(data['quantity']))
+
+        # 一個当たりの重量を計算（モデルケースとしての総重量は1000g）
+        per_item_weight = round(1000 / quantity, 2)  # 小数点以下2桁に丸める
 
         # CSVファイルにデータを書き込み
         with open('data.csv', 'a', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow([data['name'], data['quantity']])
+            writer.writerow([last_id + 1, data['name'], data['quantity'], per_item_weight])
 
         # レスポンスを送信
         self.send_response(200)
         self.set_cors_headers()
-        self.send_header('Content-type', 'application/json')
         self.end_headers()
         response = {'status': 'received'}
         self.wfile.write(json.dumps(response).encode('utf-8'))
