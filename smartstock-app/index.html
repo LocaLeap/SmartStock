@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartStock Inventory Management</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>SmartStock 在庫管理</h1>
+
+    <form id="inventory-form">
+        <input type="text" id="item-name" placeholder="アイテム名" required>
+        <input type="number" id="item-quantity" placeholder="数量" required>
+        <button type="submit">追加</button>
+    </form>
+
+    <table id="inventory-table">
+        <thead>
+            <tr>
+                <th>アイテム名</th>
+                <th>数量</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 在庫アイテムがここに表示される -->
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
