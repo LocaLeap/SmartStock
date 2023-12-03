@@ -1,0 +1,116 @@
+/* style.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e0f7fa;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #1e88e5;
+    margin-bottom: 20px;
+}
+
+#inventory-form {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inventory-form input[type="text"], 
+#inventory-form input[type="number"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#inventory-form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1e88e5;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#inventory-form button:hover {
+    background-color: #1565c0;
+    transform: scale(1.05);
+}
+
+#inventory-table {
+    width: 100%;
+    border-collapse: separate; /* 列間の境界線を別々に */
+    border-spacing: 0; /* 列間のスペース */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 12px; /* 角を丸く */
+    overflow: hidden; /* 角を丸くしたときに内部要素がはみ出さないように */
+}
+
+#inventory-table thead th {
+    background-color: #42a5f5;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+#inventory-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff; /* 白色の背景 */
+}
+
+#inventory-table tbody tr:hover {
+    background-color: #bbdefb;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    #inventory-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #inventory-form input, 
+    #inventory-form button {
+        margin: 10px 0;
+        width: 100%;
+    }
+}
+
+/* スムースなホバーエフェクト 管理者ボタン用*/
+.inventory-table tbody tr:hover td {
+    background-color: #90caf9; /* やや明るい青色 */
+}
+
+.admin-button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.admin-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #1e88e5;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.admin-button:hover {
+    background-color: #1565c0;
+    transform: scale(1.05);
+}
